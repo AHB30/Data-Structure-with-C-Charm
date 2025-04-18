@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+
+public class StackArray
+{
+    int[] stack;
+    int top;
+    int maxsize;
+
+    public StackArray(int size)
+    {
+        maxsize = size;
+        stack = new int[maxsize];
+        top = -1;
+    }
+
+    public bool isempty()
+    {
+        return top == -1;
+    }
+
+    public bool isfull()
+    {
+        return top == stack.Length - 1;
+    }
+
+    public void Push(int value)
+    {
+        if (isfull())
+        {
+            Console.WriteLine("your stack is full");
+        }
+        else
+        {
+            stack[++top] = value;
+        }
+    }
+
+    public int Pop()
+    {
+        if (isempty())
+        {
+            Console.WriteLine("stack is empty");
+            return -1;
+        }
+        return stack[top--];
+    }
+
+    public void Display()
+    {
+        if (isempty())
+        {
+            Console.WriteLine("stack is empty");
+        }
+        else
+        {
+            Console.WriteLine("stack elements: ");
+            for (int i = top; i >= 0; i--)
+            {
+                Console.WriteLine(stack[i]);
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            StackArray stack = new StackArray(5);
+            stack.Push(10);
+            stack.Push(20);
+            stack.Push(30);
+
+            stack.Display();
+
+            stack.Pop();
+            stack.Display();
+        }
+    } 
+}
