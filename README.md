@@ -1,2 +1,2 @@
-# Algrothims
-A concise collection of foundational algorithms studied throughout university, illustrating key computational strategies and core problem-solving techniques.
+Data-Structure-with-C-Charm
+A humble repository showcasing data structure using the C# programming language based on lessons from Bachelor's degree in computer science.
