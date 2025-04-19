@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyDataType
+{
+    public class queue<T>
+    {
+        int front, rear;
+        T[] array;
+        public int Count { get; private set; }
+
+        public queue(int size)
+        {
+            Count = front = 0;
+            rear = size - 1;
+            array = new T[size];
+        }
+        public bool IsFull()
+        {
+            return Count == array.Length;
+        }
+        public bool IsEmpty()
+        {
+            return Count == 0;
+        }
+        public void Enqueue(T item)
+        {
+            if (IsFull())
+                Console.WriteLine("The Queue is full");
+            else
+            {
+                rear = (rear + 1) % array.Length;
+                array[rear] = item;
+                Count++;
+            }
+        }
+        public T Dequeue()
+        {
+            if (IsEmpty())
+            {
+                Console.WriteLine("The Queue is Empty");
+                return default;
+            }
+            else
+            {
+                T item = array[front];
+                front = (front + 1) % array.Length;
+                Count--;
+                return item;
+            }
+        }
+        public T GetRear()
+        {
+            if ((IsEmpty()))
+                return default;
+            else
+                return array[rear];
+        }
+        public T GetFront()
+        {
+            if ((IsEmpty()))
+                return default;
+            else
+                return array[front];
+        }
+        public void Display()
+        {
+            if ((IsEmpty()))
+                Console.WriteLine("The Queue is Empty");
+            else
+            {
+                Console.Write("[ ");
+                for (int i = front; i != rear; i = (i + 1) % array.Length)
+                    Console.Write(array[i] + " ");
+                Console.Write(array[rear]);
+                Console.WriteLine("] ");
+            }
+        }
+
+        public void ReverseQueue()
+        {
+            Stack<T> stack = new Stack<T>();
+            
+            while (!IsEmpty())
+            {
+                stack.Push(Dequeue());
+            }
+            while(stack.Count > 0)
+            {
+                Enqueue(stack.Pop());
+            }
+
+        }
+        
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            queue<int> op = new queue<int>(5);
+            op.Enqueue(1);
+            op.Enqueue(2);
+            op.Enqueue(3);
+            op.Enqueue(4);
+            op.Enqueue(5);
+
+            Console.WriteLine("original queue");
+            op.Display();
+            
+            op.ReverseQueue();
+
+            Console.WriteLine("after reversing");
+            op.Display();
+
+            Console.ReadLine();
+           
+        }
+    }
+}
