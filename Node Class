@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyDataType
+{
+  public  class Node<T>
+    {
+
+        public T item { get; set; }
+        public Node<T> next { get; set; }
+        public Node(T item)
+        {
+            this.item = item;
+            this.next = null;
+        }
+    }
+}
